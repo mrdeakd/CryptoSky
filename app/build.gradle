@@ -54,6 +54,7 @@ dependencies {
     //Rainbowcake
     implementation "co.zsmb:rainbow-cake-core:$rainbowcake_version"
     implementation "co.zsmb:rainbow-cake-dagger:$rainbowcake_version"
+    implementation "co.zsmb:rainbow-cake-navigation:$rainbowcake_version"
     testImplementation "co.zsmb:rainbow-cake-test:$rainbowcake_version"
     implementation "co.zsmb:rainbow-cake-timber:$rainbowcake_version"
 
