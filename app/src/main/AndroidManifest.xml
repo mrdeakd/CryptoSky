@@ -3,6 +3,7 @@
     package="deak.david.mszr.cryptosky">
 
     <application
+        android:name=".CryptoSkyApplicaton"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,8 +12,7 @@
         android:theme="@style/Theme.CryptoSky">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.CryptoSky.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
