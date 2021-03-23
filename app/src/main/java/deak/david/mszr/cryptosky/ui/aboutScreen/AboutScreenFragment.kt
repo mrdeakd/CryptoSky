@@ -9,7 +9,7 @@ import deak.david.mszr.cryptosky.R
 
 class AboutScreenFragment : RainbowCakeFragment<AboutScreenViewState, AboutScreenViewModel>() {
 
-    override fun getViewResource() = R.layout.fragment_main
+    override fun getViewResource() = R.layout.fragment_about
 
     override fun provideViewModel() = getViewModelFromFactory()
 
