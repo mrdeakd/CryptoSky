@@ -6,6 +6,7 @@ import co.zsmb.rainbowcake.config.rainbowCake
 import co.zsmb.rainbowcake.dagger.RainbowCakeApplication
 import co.zsmb.rainbowcake.dagger.RainbowCakeComponent
 import co.zsmb.rainbowcake.timber.TIMBER
+import deak.david.mszr.cryptosky.di.DaggerAppComponent
 //import deak.david.mszr.cryptosky.di.DaggerAppComponent
 import timber.log.Timber
 
@@ -13,7 +14,7 @@ class CryptoSkyApplicaton : RainbowCakeApplication() {
     override lateinit var injector: RainbowCakeComponent
 
     override fun setupInjector() {
-        //injector = DaggerAppComponent.create()
+        injector = DaggerAppComponent.create()
     }
 
     override fun onCreate() {
