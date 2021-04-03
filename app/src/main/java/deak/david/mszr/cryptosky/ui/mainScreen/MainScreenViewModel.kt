@@ -5,4 +5,8 @@ import javax.inject.Inject
 
 class MainScreenViewModel @Inject constructor(
     private val mainScreenPresenter: MainScreenPresenter
-) : RainbowCakeViewModel<MainScreenViewState>(Initial) {}
+) : RainbowCakeViewModel<MainScreenViewState>(Initial) {
+    fun loadAllCoins() = execute {
+        viewState = CoinsLoaded(mainScreenPresenter.getAllCoins())
+    }
+}
