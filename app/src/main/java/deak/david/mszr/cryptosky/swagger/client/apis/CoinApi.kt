@@ -61,10 +61,10 @@ class CoinApi(basePath: kotlin.String = "https://api.coincap.io/v2") : ApiClient
     * @return ResponseListOfCoins
     */
     @Suppress("UNCHECKED_CAST")
-    fun getCoins() : ResponseListOfCoins {
+    fun getCoins(limit: kotlin.Int = 2000) : ResponseListOfCoins {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mapOf()
-        
+        val localVariableQuery: MultiValueMap = mapOf("limit" to listOf("$limit"))
+
         val contentHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf()
         val acceptsHeaders: kotlin.collections.Map<kotlin.String,kotlin.String> = mapOf("Accept" to "application/xml, application/json")
         val localVariableHeaders: kotlin.collections.MutableMap<kotlin.String,kotlin.String> = mutableMapOf()
