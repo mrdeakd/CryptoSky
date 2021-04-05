@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="CryptoSky"
+            android:text="@string/cryptosky"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/app_bar"
             app:layout_constraintStart_toStartOf="@+id/app_bar"
@@ -33,7 +33,7 @@
             style="@android:style/Widget.Holo.ImageButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:src="@android:drawable/ic_menu_help"
             tools:layout_editor_absoluteX="340dp"
             tools:layout_editor_absoluteY="2dp" />
