@@ -29,17 +29,17 @@ import deak.david.mszr.cryptosky.disk.model.DBCoin
  * @param vwap24Hr 
  */
 data class Coin (
-    val id: String?,
-    val rank: String?,
-    val symbol: String?,
-    val name: String?,
-    val supply: String?,
-    val maxSupply: String?,
-    val marketCapUsd: String?,
-    val volumeUsd24Hr: String?,
-    val priceUsd: String?,
-    val changePercent24Hr: String?,
-    val vwap24Hr: String?
+    val id: kotlin.String? = null,
+    val rank: kotlin.String? = null,
+    val symbol: kotlin.String? = null,
+    val name: kotlin.String? = null,
+    val supply: kotlin.String? = null,
+    val maxSupply: kotlin.String? = null,
+    val marketCapUsd: kotlin.String? = null,
+    val volumeUsd24Hr: kotlin.String? = null,
+    val priceUsd: kotlin.String? = null,
+    val changePercent24Hr: kotlin.String? = null,
+    val vwap24Hr: kotlin.String? = null
 )
 
 fun Coin.mapToDomainDBCoin(): DBCoin =
@@ -56,4 +56,5 @@ fun Coin.mapToDomainDBCoin(): DBCoin =
         changePercent24Hr = this.changePercent24Hr ?: "",
         vwap24Hr = this.vwap24Hr ?: ""
     )
+
 

@@ -3,11 +3,14 @@ package io.swagger.client.infrastructure
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.IOException
 import java.nio.file.Files;
 import java.util.regex.Pattern
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "JAVA_CLASS_ON_COMPANION")
 open class ApiClient(val baseUrl: String) {
     companion object {
         protected val ContentType = "Content-Type"
@@ -31,43 +34,48 @@ open class ApiClient(val baseUrl: String) {
         val jsonHeaders: Map<String, String> = mapOf(ContentType to JsonMediaType, Accept to JsonMediaType)
     }
 
-    inline protected fun <reified T> requestBody(content: T, mediaType: String = JsonMediaType): RequestBody {
-        if(content is File) {
-            return RequestBody.create(
-                    mediaType.toMediaTypeOrNull(), content
-            )
-        } else if(mediaType == FormDataMediaType) {
-           val requestBodyBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
-
-            // content's type *must* be Map<String, Any>
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                @Suppress("UNCHECKED_CAST")
-                (content as Map<String,Any>).forEach { key, value ->
-                    if(value::class == File::class) {
-                        val file = value as File
-                        requestBodyBuilder.addFormDataPart(key, file.name, RequestBody.create("application/octet-stream".toMediaTypeOrNull(), file))
-                    } else {
-                        val stringValue = value as String
-                        requestBodyBuilder.addFormDataPart(key, stringValue)
-                    }
-                    TODO("Handle other types inside FormDataMediaType")
-                }
+    protected inline fun <reified T> requestBody(content: T, mediaType: String = JsonMediaType): RequestBody {
+        when {
+            content is File -> {
+                return content
+                    .asRequestBody(mediaType.toMediaTypeOrNull())
             }
+            mediaType == FormDataMediaType -> {
+                val requestBodyBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
 
-            return requestBodyBuilder.build()
-        }  else if(mediaType == JsonMediaType) {
-            return RequestBody.create(
-                    mediaType.toMediaTypeOrNull(), Serializer.moshi.adapter(T::class.java).toJson(content)
-            )
-        } else if (mediaType == XmlMediaType) {
-            TODO("xml not currently supported.")
+                // content's type *must* be Map<String, Any>
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    @Suppress("UNCHECKED_CAST")
+                    (content as Map<String,Any>).forEach { (key, value) ->
+                        if(value::class == File::class) {
+                            val file = value as File
+                            requestBodyBuilder.addFormDataPart(key, file.name,
+                                file.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+                            )
+                        } else {
+                            val stringValue = value as String
+                            requestBodyBuilder.addFormDataPart(key, stringValue)
+                        }
+                        TODO("Handle other types inside FormDataMediaType")
+                    }
+                }
+
+                return requestBodyBuilder.build()
+            }
+            mediaType == JsonMediaType -> {
+                return Serializer.moshi.adapter(T::class.java).toJson(content)
+                    .toRequestBody(mediaType.toMediaTypeOrNull())
+            }
+            mediaType == XmlMediaType -> {
+                TODO("xml not currently supported.")
+            }
         }
 
         // TODO: this should be extended with other serializers
         TODO("requestBody currently only supports JSON body and File body.")
     }
 
-    inline protected fun <reified T: Any?> responseBody(response: Response, mediaType: String = JsonMediaType): T? {
+    protected inline fun <reified T: Any?> responseBody(response: Response): T? {
         if(response.body == null) return null
 
         if(T::class.java == java.io.File::class.java){
@@ -121,7 +129,7 @@ open class ApiClient(val baseUrl: String) {
 
         // TODO: support multiple contentType,accept options here.
         val contentType = (headers[ContentType] as String).substringBefore(";").toLowerCase()
-        val accept = (headers[Accept] as String).substringBefore(";").toLowerCase()
+        (headers[Accept] as String).substringBefore(";").toLowerCase()
 
         var request : Request.Builder =  when (requestConfig.method) {
             RequestMethod.DELETE -> Request.Builder().url(url).delete()
@@ -150,7 +158,7 @@ open class ApiClient(val baseUrl: String) {
                     response.headers.toMultimap()
             )
             response.isSuccessful -> return Success(
-                    responseBody(response, accept),
+                    responseBody(response),
                     response.code,
                     response.headers.toMultimap()
             )

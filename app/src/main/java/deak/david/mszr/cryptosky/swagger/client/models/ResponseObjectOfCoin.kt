@@ -18,8 +18,8 @@ import io.swagger.client.models.Coin
  * @param &#x60;data&#x60; 
  * @param timestamp 
  */
-data class ResponseListOfCoins (
-    val `data`: kotlin.Array<Coin>? = null,
+data class ResponseObjectOfCoin (
+    val `data`: Coin? = null,
     val timestamp: kotlin.Long? = null
 ) {
 

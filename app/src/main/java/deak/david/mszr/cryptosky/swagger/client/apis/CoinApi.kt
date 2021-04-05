@@ -12,6 +12,7 @@
 package io.swagger.client.apis
 
 import io.swagger.client.models.ResponseListOfCoins
+import io.swagger.client.models.ResponseObjectOfCoin
 
 import io.swagger.client.infrastructure.*
 
@@ -21,10 +22,10 @@ class CoinApi(basePath: kotlin.String = "https://api.coincap.io/v2") : ApiClient
     * Find coin by ID
     * Returns a single coin
     * @param id ID of coin to return 
-    * @return ResponseListOfCoins
+    * @return ResponseObjectOfCoin
     */
     @Suppress("UNCHECKED_CAST")
-    fun getCoinById(id: kotlin.String) : ResponseListOfCoins {
+    fun getCoinById(id: kotlin.String) : ResponseObjectOfCoin {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -40,18 +41,17 @@ class CoinApi(basePath: kotlin.String = "https://api.coincap.io/v2") : ApiClient
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val response = request<ResponseListOfCoins>(
+        val response = request<ResponseObjectOfCoin>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as ResponseListOfCoins
+            ResponseType.Success -> (response as Success<*>).data as ResponseObjectOfCoin
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
             ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
-            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
         }
     }
 
@@ -88,7 +88,6 @@ class CoinApi(basePath: kotlin.String = "https://api.coincap.io/v2") : ApiClient
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
             ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
-            else -> throw kotlin.IllegalStateException("Undefined ResponseType.")
         }
     }
 

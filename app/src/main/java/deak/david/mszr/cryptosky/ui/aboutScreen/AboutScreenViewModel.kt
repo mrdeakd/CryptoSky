@@ -5,4 +5,4 @@ import javax.inject.Inject
 
 class AboutScreenViewModel @Inject constructor(
     private val aboutScreenPresenter: AboutScreenPresenter
-) : RainbowCakeViewModel<AboutScreenViewState>(Initial) {}
+) : RainbowCakeViewModel<AboutScreenViewState>(Initial)

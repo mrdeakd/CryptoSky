@@ -14,7 +14,11 @@ class RoomDataSource @Inject constructor(
         return databaseDao.getAllCoins()
     }
 
-    fun getNewsById(id: String): DBCoin {
-        return databaseDao.getCoinById(id.toInt())
+    fun deleteCoinById(id: String) {
+        databaseDao.deleteCoinById(id)
+    }
+
+    fun getCoinById(id: String): DBCoin {
+        return databaseDao.getCoinById(id)
     }
 }
