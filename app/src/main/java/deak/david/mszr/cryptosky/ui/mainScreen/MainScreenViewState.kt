@@ -6,4 +6,8 @@ sealed class MainScreenViewState
 
 object Initial : MainScreenViewState()
 
+object NoCoinFoundWithText : MainScreenViewState()
+
+object NoInternetConnection : MainScreenViewState()
+
 data class CoinsLoaded(val coinList: List<DBCoin>) : MainScreenViewState()

@@ -1,9 +1,11 @@
-package deak.david.mszr.cryptosky.disk
+package deak.david.mszr.cryptosky
 
 import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
+import deak.david.mszr.cryptosky.disk.CoinRoomDatabase
+import deak.david.mszr.cryptosky.disk.DatabaseDao
 import javax.inject.Singleton
 
 @Module
