@@ -19,6 +19,7 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("deak.david.mszr.cryptosky", appContext.packageName)
+        val asd = appContext.packageName
+        assertEquals("deak.david.mszr.cryptosky.mockTest", appContext.packageName)
     }
 }
