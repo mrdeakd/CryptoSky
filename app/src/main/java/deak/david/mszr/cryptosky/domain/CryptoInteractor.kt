@@ -1,13 +1,13 @@
 package deak.david.mszr.cryptosky.domain
 
+import deak.david.mszr.cryptosky.data.network.model.ResponseListOfCoins
+import deak.david.mszr.cryptosky.data.network.model.ResponseObjectOfCoin
+import deak.david.mszr.cryptosky.data.network.model.mapToDomainDBCoin
 import deak.david.mszr.cryptosky.disk.model.DBCoin
 import deak.david.mszr.cryptosky.disk.RoomDataSource
 import deak.david.mszr.cryptosky.disk.model.NewListWrapper
 import deak.david.mszr.cryptosky.network.CryptoNetworkDataSource
 import deak.david.mszr.cryptosky.utils.Functions
-import io.swagger.client.models.ResponseListOfCoins
-import io.swagger.client.models.ResponseObjectOfCoin
-import io.swagger.client.models.mapToDomainDBCoin
 import javax.inject.Inject
 
 class CryptoInteractor @Inject constructor(
