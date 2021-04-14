@@ -24,6 +24,20 @@ android {
         }
     }
 
+    flavorDimensions "example"
+
+    productFlavors {
+        full {
+            applicationId "deak.david.mszr.cryptosky.full"
+            versionName "1.0-full"
+            dimension "example"
+        }
+        mockTest {
+            applicationId "deak.david.mszr.cryptosky.mockTest"
+            versionName "1.0-test"
+        }
+    }
+
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8

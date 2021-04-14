@@ -11,12 +11,14 @@
 */
 package io.swagger.client.apis
 
+import deak.david.mszr.cryptosky.swagger.client.apis.BaseApi
 import io.swagger.client.models.ResponseListOfCoins
 import io.swagger.client.models.ResponseObjectOfCoin
 
 import io.swagger.client.infrastructure.*
 
-class CoinApi(basePath: kotlin.String = "https://api.coincap.io/v2") : ApiClient(basePath) {
+
+class CoinApi(basePath: kotlin.String = "https://api.coincap.io/v2") : ApiClient(basePath), BaseApi {
 
     /**
     * Find coin by ID
@@ -25,7 +27,7 @@ class CoinApi(basePath: kotlin.String = "https://api.coincap.io/v2") : ApiClient
     * @return ResponseObjectOfCoin
     */
     @Suppress("UNCHECKED_CAST")
-    fun getCoinById(id: kotlin.String) : ResponseObjectOfCoin {
+    override fun getCoinById(id: kotlin.String) : ResponseObjectOfCoin {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -61,7 +63,7 @@ class CoinApi(basePath: kotlin.String = "https://api.coincap.io/v2") : ApiClient
     * @return ResponseListOfCoins
     */
     @Suppress("UNCHECKED_CAST")
-    fun getCoins(limit: kotlin.Int = 2000) : ResponseListOfCoins {
+    override fun getCoins(limit: kotlin.Int) : ResponseListOfCoins {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf("limit" to listOf("$limit"))
 
