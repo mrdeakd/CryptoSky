@@ -1,5 +1,6 @@
 package deak.david.mszr.cryptosky.domain
 
+import deak.david.mszr.cryptosky.Functions
 import deak.david.mszr.cryptosky.data.network.model.ResponseListOfCoins
 import deak.david.mszr.cryptosky.data.network.model.ResponseObjectOfCoin
 import deak.david.mszr.cryptosky.data.network.model.mapToDomainDBCoin
@@ -7,7 +8,6 @@ import deak.david.mszr.cryptosky.disk.model.DBCoin
 import deak.david.mszr.cryptosky.disk.RoomDataSource
 import deak.david.mszr.cryptosky.disk.model.NewListWrapper
 import deak.david.mszr.cryptosky.network.CryptoNetworkDataSource
-import deak.david.mszr.cryptosky.utils.Functions
 import javax.inject.Inject
 
 class CryptoInteractor @Inject constructor(
@@ -44,7 +44,7 @@ class CryptoInteractor @Inject constructor(
         return NewListWrapper(roomDataSource.getCoins(),listChanged = false)
     }
 
-    suspend fun loadDetails(coinId: String): DBCoin {
+    fun loadDetails(coinId: String): DBCoin {
         return roomDataSource.getCoinById(coinId)
     }
 }

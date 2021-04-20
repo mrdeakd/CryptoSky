@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CryptoNetworkDataSource @Inject constructor(
+open class CryptoNetworkDataSource @Inject constructor(
     private val cryptoAPI: BaseApi
 ) {
     suspend fun getCryptos(): ResponseListOfCoins {

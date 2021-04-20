@@ -1,4 +1,4 @@
-package deak.david.mszr.cryptosky.utils
+package deak.david.mszr.cryptosky
 
 import java.io.IOException
 

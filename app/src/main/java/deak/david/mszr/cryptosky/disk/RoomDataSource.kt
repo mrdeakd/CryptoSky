@@ -3,7 +3,7 @@ package deak.david.mszr.cryptosky.disk
 import deak.david.mszr.cryptosky.disk.model.DBCoin
 import javax.inject.Inject
 
-class RoomDataSource @Inject constructor(
+open class RoomDataSource @Inject constructor(
     private val databaseDao: DatabaseDao
 ) {
     fun saveCoin(coin: DBCoin) {

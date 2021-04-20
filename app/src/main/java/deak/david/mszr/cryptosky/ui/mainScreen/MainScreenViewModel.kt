@@ -1,7 +1,7 @@
 package deak.david.mszr.cryptosky.ui.mainScreen
 
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
-import deak.david.mszr.cryptosky.utils.Functions
+import deak.david.mszr.cryptosky.Functions
 import javax.inject.Inject
 
 class MainScreenViewModel @Inject constructor(
